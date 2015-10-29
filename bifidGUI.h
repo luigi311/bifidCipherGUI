@@ -6,6 +6,7 @@
 struct gui
 {
   GtkWidget *window;
+  GtkWidget *windowButton;
   GtkWidget *grid;
   GtkWidget *gridButton;
   GtkWidget *encrypted;

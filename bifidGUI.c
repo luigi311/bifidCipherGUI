@@ -33,7 +33,7 @@ void activate(GtkApplication *app, gpointer user_data) {
   gtk_window_set_title(GTK_WINDOW(gui.window), "Bifid"); //Window Title
   gtk_window_set_default_size(GTK_WINDOW (gui.window), 300, 100); //Window Size
 
-  /* Create Grid to hold all widgets*/
+  /* Create Grid to hold all widgets */
   gui.grid = gtk_grid_new();
   gtk_container_add(GTK_CONTAINER(gui.window), gui.grid);
   gtk_grid_set_row_homogeneous(GTK_GRID(gui.grid),FALSE);
@@ -43,11 +43,11 @@ void activate(GtkApplication *app, gpointer user_data) {
   labelUnc = gtk_label_new("Unencrypted text: "); 
   gtk_grid_attach(GTK_GRID(gui.grid), GTK_WIDGET(labelUnc), 0, 0, 1, 1);
   gui.unecrypted = gtk_label_new(NULL);
-  gtk_grid_attach_next_to(GTK_GRID(gui.grid), GTK_WIDGET(gui.unecrypted), labelUnc, 1, 1, 1);
+  gtk_grid_attach(GTK_GRID(gui.grid), GTK_WIDGET(gui.unecrypted), 2, 0, 1, 1);
   labelEnc = gtk_label_new("Encrypted text: ");
   gtk_grid_attach(GTK_GRID(gui.grid), GTK_WIDGET(labelEnc), 0, 1, 1, 1);
   gui.encrypted = gtk_label_new(NULL);
-  gtk_grid_attach_next_to(GTK_GRID(gui.grid), GTK_WIDGET(gui.encrypted), labelEnc, 1, 1, 1);
+  gtk_grid_attach(GTK_GRID(gui.grid), GTK_WIDGET(gui.encrypted), 2, 1, 1, 1);
 
   /* Text Box */
   gui.textBox = gtk_entry_new();
@@ -61,12 +61,12 @@ void activate(GtkApplication *app, gpointer user_data) {
   /* Creates a button titled file that launches the file function to ecrypt text from file */
   fileButton = gtk_button_new_with_label("Encrypt File");
   g_signal_connect(fileButton, "clicked", G_CALLBACK(file), NULL);
-  gtk_grid_attach(GTK_GRID(gui.grid), fileButton, 1, 3, 1, 1);
+  gtk_grid_attach_next_to(GTK_GRID(gui.grid), fileButton, textButton, GTK_POS_RIGHT, 1, 1);
 
   /* Creates buttone titled quit that exits the GUI and program */
   quit = gtk_button_new_with_label ("Quit"); 
   g_signal_connect_swapped (quit, "clicked", G_CALLBACK (gtk_widget_destroy), gui.window); 
-  gtk_grid_attach(GTK_GRID(gui.grid), quit, 2, 3, 1, 1);
+  gtk_grid_attach(GTK_GRID(gui.grid), quit, 0, 4, 1, 1);
 
   /* Makes window visible causing it to show everything attached */
   gtk_widget_show_all(gui.window);
@@ -78,7 +78,7 @@ void text() {
      with size in sizeofarray */
   information.sizeOfArray = gtk_entry_get_text_length(GTK_ENTRY(gui.textBox));
   information.readArray = malloc(sizeof(char)*information.sizeOfArray);
-  information.readArray = (char *)gtk_entry_get_text(GTK_ENTRY(gui.textBox));
+  information.readArray = (char*)gtk_entry_get_text(GTK_ENTRY(gui.textBox));
   
   /* Encrypts everything */
   work();
@@ -114,7 +114,7 @@ void guiUpdate() {
   gtk_label_set_text(GTK_LABEL(gui.encrypted),gui.strEnc); 
   
   /* Frees all pointers */
-  clean();
+  //clean();
 }
 
 /* Input the cordinates and it returns the character that matches it on the grid */
