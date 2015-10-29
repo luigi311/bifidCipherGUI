@@ -2,7 +2,7 @@ BifidCipherGUI
 To compile just run the build.sh file that holds the gcc command
 
 Things to do:
-  Fix crash on exactly 40 characters
+  Fix crash on exactly 24 and 40 characters
   Keep buttons from resizing to match the size of the text
 
 Completed:
