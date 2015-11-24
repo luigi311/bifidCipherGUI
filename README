@@ -1,5 +1,5 @@
 BifidCipherGUI
-To compile just run the build.sh file that holds the gcc command
+To compile just run the makefile file 
 
 Things to do:
   Fix crash on exactly 24 and 40 characters
